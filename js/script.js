@@ -31,20 +31,35 @@ console.log('Numeri random', randomArray)
 // Dopo 30 secondi
 // Chiedo all'utente x numeri con while
 // Se sono contenuti nell'array dei numeri random "randomArray" li pusho in un altrto array come risultato "result"
-// 
 
-var timerMs = 1 * 1000;
+var timerMs = 30 * 1000;
 var userArray = [];
 var result = []
 
 setTimeout(function () {
     while (userArray.length < numQty) {
         var inputUser = parseInt(prompt('inserisci un numero'));
-        userArray.push(inputUser);
-        
-        if (randomArray.includes(inputUser)) {
-            result.push(inputUser);
-        }
+
+        if (!isNaN(inputUser)){
+            
+            // pusho nell'userArray il numero ne non è gia incluso
+            if(!userArray.includes(inputUser)){
+                userArray.push(inputUser);
+            } else {
+                alert('hai gia inserito questo numero');
+            }
+            
+            // pusho nel mio result l'inputUser se è presente nel randomArray
+            if (randomArray.includes(inputUser)) {
+                // Lo pusho anche solo se non è nel mio  array dei result
+                if(!result.includes(inputUser)){
+                    result.push(inputUser);
+                } 
+            }
+
+        } else {
+            alert('Non hai inserito un numero, riprova');
+        } 
         
     }
     console.log('Numeri azzaccati', result);
